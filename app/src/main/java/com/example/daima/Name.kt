@@ -77,7 +77,10 @@ fun Name(navController: NavController, myCharacter: Int) {
             }
             Box(
                 modifier = Modifier
-                    .clickable { navController.navigate("${Routes.ResultScreen}/${myCharacter}/${myName}") }
+                    .clickable { navController.navigate(Routes.ResultScreen.createRoute(
+                        myCharacter,
+                        myName
+                    )) }
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color.LightGray)
                     .padding(horizontal = 72.dp, vertical = 10.dp),

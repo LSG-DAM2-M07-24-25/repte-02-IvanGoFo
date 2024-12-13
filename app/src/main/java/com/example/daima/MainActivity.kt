@@ -25,21 +25,19 @@ class MainActivity : ComponentActivity() {
                 navController = navigationController,
                 startDestination = Routes.LaunchScreen
             ) {
-                composable(Routes.LaunchScreen) { Launch(navigationController) }
-                composable(Routes.CharacterScreen) { Character(navigationController) }
+                composable(Routes.LaunchScreen.route) { Launch(navigationController) }
+                composable(Routes.CharacterScreen.route) { Character(navigationController) }
                 composable(
-                    route = Routes.NameScreen,
+                    route = Routes.NameScreen.route,
                     arguments = listOf(navArgument("character") { type = NavType.IntType })
                 ) { backStackEntry ->
-                    backStackEntry.arguments?.getInt("character")?.let {
-                        Name(
-                            navigationController,
-                            it.or(1)
-                        )
-                    }
+                    Name(
+                        navigationController,
+                        backStackEntry.arguments?.getInt("character") ?: 1
+                    )
                 }
                 composable(
-                    route = Routes.ResultScreen,
+                    route = Routes.ResultScreen.route,
                     arguments = listOf(
                         navArgument("character") { type = NavType.IntType },
                         navArgument("name") { type = NavType.StringType }

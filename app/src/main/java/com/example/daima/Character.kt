@@ -1,7 +1,9 @@
 package com.example.daima
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -78,24 +80,39 @@ fun Character(navController: NavController) {
             ){
 
                 items((0..5).toList()) { character ->
-                    Box(
-                        modifier = Modifier
-                            .clickable { myCharacter = character }
-                    ){
-                        Image(
-                            contentScale = ContentScale.FillBounds,
-                            painter = painterResource(
-                                id = characterImages[character]
-                            ),
-                            contentDescription = "Character icon",
-                        )
+                    if (myCharacter == character){
+                        Box(
+                            modifier = Modifier
+                                .clickable { myCharacter = character }
+                                .background(Color.LightGray)
+                        ){
+                            Image(
+                                contentScale = ContentScale.FillBounds,
+                                painter = painterResource(
+                                    id = characterImages[character]
+                                ),
+                                contentDescription = "Character icon",
+                            )
+                        }
+                    } else {
+                        Box(
+                            modifier = Modifier
+                                .clickable { myCharacter = character }
+                        ){
+                            Image(
+                                contentScale = ContentScale.FillBounds,
+                                painter = painterResource(
+                                    id = characterImages[character]
+                                ),
+                                contentDescription = "Character icon",
+                            )
+                        }
                     }
                 }
-
             }
             Box(
                 modifier = Modifier
-                    .clickable { navController.navigate("${Routes.NameScreen}/${myCharacter}") }
+                    .clickable { navController.navigate(Routes.NameScreen.createRoute(myCharacter)) }
                     .clip(RoundedCornerShape(12.dp))
                     .background(Color.LightGray)
                     .padding(horizontal = 72.dp, vertical = 10.dp),

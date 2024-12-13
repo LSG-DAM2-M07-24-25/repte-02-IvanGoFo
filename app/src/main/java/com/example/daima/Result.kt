@@ -74,7 +74,7 @@ fun Result(navController: NavController ,myCharacter: Int, myName: String) {
                     painter = painterResource(
                         id = selectedCharacter
                     ),
-                    contentDescription = "Game icon",
+                    contentDescription = "Character icon",
                     modifier = Modifier
                         .fillMaxSize()
 
